@@ -13,7 +13,7 @@ function onFollow(event) {
     //get user's twitter handler (screen name)
     var name = event.source.name;
     var screenName = event.source.screen_name;
-    console.log('followed by @' + screenName);
+    console.log('you have been followed by @' + screenName);
     // function that replies back to the user who followed
     tweetNow('@' + screenName + ' Welcome to Meek Chat. Happy to see you around.');
 }
