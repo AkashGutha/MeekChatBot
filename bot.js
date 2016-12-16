@@ -26,6 +26,7 @@ function onFollow(event) {
 	// function that replies back to the user who followed
 	tweetNow('@' + screenName + ` Thanks for following Meek Chat. Happy to see you around.
 	We will keep you posted about future updates.`);
+	follow(screenName, event.source.user_id);
 }
 
 function onTweet(event) {
