@@ -8,6 +8,13 @@ var stream = Twitter.stream('user');
 
 stream.on("follow", onFollow);
 
+console.log('===========================================');
+console.log('Meek chat bot started succesfully');
+console.log('===========================================');
+console.log('');
+console.log('Listening for events ...');
+console.log('');
+
 // call backs
 function onFollow(event) {
     //get user's twitter handler (screen name)
