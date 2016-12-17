@@ -1,4 +1,5 @@
 var twit = require('twit');
+var http = require('http');
 
 if (process.argv[2] == '--local') {
     var config = require('./config.json');
@@ -9,6 +10,10 @@ if (process.argv[2] == '--local') {
         consumer_key: process.env.consumer_key,
         consumer_secret: process.env.consumer_secret,
     }
+
+    var server = http.createServer();
+    server.listen(process.env.PORT);
+
 }
 
 var Twitter = new twit(config);
