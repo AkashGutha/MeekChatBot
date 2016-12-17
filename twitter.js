@@ -1,6 +1,6 @@
 var twit = require('twit');
 
-if (process.env.argv[2] == '--local') {
+if (process.argv[2] == '--local') {
     var config = require('./config.json');
 } else {
     var config = {
