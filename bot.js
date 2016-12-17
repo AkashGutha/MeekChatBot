@@ -12,7 +12,7 @@ welcomeMsg();
 
 // listen for events on this stream.
 stream.on("follow", onFollow);
-stream.on('tweet', onTweet);
+stream.on("tweet", onTweet);
 
 // main program end.
 
