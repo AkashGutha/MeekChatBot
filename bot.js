@@ -15,7 +15,7 @@ var queue = [];
 
 // set up timed functions.
 var searchInterval = setInterval(search, 60000);
-var followInterval = setInterval(followFromQueue, 3000);
+var followInterval = setInterval(followFromQueue, 1000);
 var reviveIterval = setInterval(revive, 1000 * 60 * 60);
 
 // set up a user stream
