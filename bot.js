@@ -4,9 +4,12 @@ var Twitter = require('./twitter');
 // import required library
 var Follow = require('./lib/follow');
 var Search = require('./lib/search');
+var SearchTerms = require('./searchterms.json');
 
 // include helper library for predefined messages.
 var helperMessages = require('./heplers/messages');
+
+var rng = require('random-number-generator');
 
 var queue = [];
 
@@ -27,7 +30,7 @@ stream.on('follow', Follow.gratitudeOnFollow);
 // main program end.
 
 function search() {
-    Search.searchByTerm('#gamedev')
+    Search.searchByTerm(SearchTerms.terms[rng(SearchTerms.terms.length - 1)])
         .then(function (response) {
             //console.log(response.data);
             response.data.statuses.forEach(function (element) {
