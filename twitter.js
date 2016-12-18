@@ -1,4 +1,4 @@
-var twit = require('twit');
+var twit = require('twit-promise');
 var http = require('http');
 
 if (process.argv[2] == '--local') {
