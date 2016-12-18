@@ -11,7 +11,7 @@ var helperMessages = require('./heplers/messages');
 var queue = [];
 
 // set up timed functions.
-setInterval(search, 30000);
+setInterval(search, 60000);
 setInterval(followFromQueue, 1000);
 
 // set up a user stream
@@ -27,19 +27,26 @@ stream.on('follow', Follow.gratitudeOnFollow);
 // main program end.
 
 function search() {
-    Search.searchByTerm('#gamedev').then(function (data, response) {
-        data.statuses.forEach(function (element) {
-            queue.push({
-                id: element.user.id,
-                screen_name: element.user.screen_name
-            })
-        }, this);
-    });
+    Search.searchByTerm('#gamedev')
+        .then(function (response) {
+            //console.log(response.data);
+            response.data.statuses.forEach(function (element) {
+                queue.push({
+                    id: element.user.id,
+                    screen_name: element.user.screen_name
+                });
+            }, this);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    console.log(queue);
 }
 
 function followFromQueue() {
-    if (queue !== []) {
-        var user = queue.pop();
+    console.log(queue.length);
+    if (queue.length > 0) {
+        var user = queue.shift();
+        console.log(user.screen_name);
         Follow.follow(user.screen_name, user.id);
     }
 }
