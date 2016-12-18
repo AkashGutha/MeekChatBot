@@ -16,6 +16,7 @@ var queue = [];
 // set up timed functions.
 var searchInterval = setInterval(search, 60000);
 var followInterval = setInterval(followFromQueue, 1000);
+var reviveIterval = setInterval(revive, 1000 * 60 * 60);
 
 // set up a user stream
 var stream = Twitter.stream('user');
@@ -55,11 +56,21 @@ function followFromQueue() {
                 if (response.errors !== undefined) {
                     for (var i = 0; i < response.errors.length; i++) {
                         var error = response.errors[i];
-                        if (error.code == 161) clearInterval(followInterval);
+                        if (error.code == 161) {
+                            clearInterval(followInterval);
+                            clearInterval(searchInterval);
+                        }
                     }
                 } else {
                     console.log('sucessfully followed');
                 }
             });
     }
+}
+
+function revive() {
+    clearInterval(followInterval);
+    clearInterval(searchInterval);
+    searchInterval = setInterval(search, 60000);
+    followInterval = setInterval(followFromQueue, 1000);
 }
