@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bot",
-    "start-local" : "node bot --local"
+    "start-local": "node bot --local"
   },
   "keywords": [
     "meek",
@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "random-number-generator": "^1.0.2",
-    "twit": "^2.2.5"
+    "twit": "^2.2.5",
+    "twit-promise": "^2.1.0"
   }
 }
