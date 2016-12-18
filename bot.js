@@ -14,8 +14,8 @@ var rng = require('random-number-generator');
 var queue = [];
 
 // set up timed functions.
-setInterval(search, 60000);
-setInterval(followFromQueue, 1000);
+var searchInterval = setInterval(search, 60000);
+var followInterval = setInterval(followFromQueue, 1000);
 
 // set up a user stream
 var stream = Twitter.stream('user');
@@ -32,7 +32,6 @@ stream.on('follow', Follow.gratitudeOnFollow);
 function search() {
     Search.searchByTerm(SearchTerms.terms[rng(SearchTerms.terms.length - 1)])
         .then(function (response) {
-            //console.log(response.data);
             response.data.statuses.forEach(function (element) {
                 queue.push({
                     id: element.user.id,
@@ -42,7 +41,7 @@ function search() {
         }).catch(function (error) {
             console.log(error);
         });
-    console.log(queue);
+    // console.log(queue);
 }
 
 function followFromQueue() {
@@ -50,6 +49,17 @@ function followFromQueue() {
     if (queue.length > 0) {
         var user = queue.shift();
         console.log(user.screen_name);
-        Follow.follow(user.screen_name, user.id);
+        Follow.follow(user.screen_name, user.id)
+            .then(function (response) {
+                // do something
+                if (response.errors !== undefined) {
+                    for (var i = 0; i < response.errors.length; i++) {
+                        var error = response.errors[i];
+                        if (error.code == 161) clearInterval(followInterval);
+                    }
+                } else {
+                    console.log('sucessfully followed');
+                }
+            });
     }
 }
