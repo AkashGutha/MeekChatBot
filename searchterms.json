@@ -8,6 +8,11 @@
         "#iphone",
         "#playstore",
         "#gamedev",
-        "#dev"
+        "#dev",
+        "#uwp",
+        "#windows10",
+        "#windowsphone",
+        "#UWPdev",
+        "#materialdesign"
     ]
 }
