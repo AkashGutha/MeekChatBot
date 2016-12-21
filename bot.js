@@ -83,8 +83,16 @@ function revive() {
 }
 
 function greet() {
-    var quote = randomQuote.getRandomQuote();
-    if (quote == "error") return;
-    else if (quote.length <= 130) Tweet.sendTweet("#quote : " + quote);
-    else if (quote.length <= 140) Tweet.sendTweet(quote);
+    randomQuote.getRandomQuote(function (result) {
+
+        var quote = JSON.parse(result.body).quote;
+        console.log("quote is " + quote);
+
+        if (quote) {
+            if (quote === "error") return;
+            else if (quote.length <= 130) Tweet.sendTweet("#quote : " + quote);
+            else if (quote.length <= 140) Tweet.sendTweet(quote);
+        }
+    });
+
 }
