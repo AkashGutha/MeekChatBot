@@ -3,8 +3,10 @@ var Twitter = require('./twitter');
 
 // import required library
 var Follow = require('./lib/follow');
+var Tweet = require('./lib/tweet');
 var Search = require('./lib/search');
 var SearchTerms = require('./searchterms.json');
+var randomQuote = require('./heplers/randomQuote');
 
 // include helper library for predefined messages.
 var helperMessages = require('./heplers/messages');
@@ -17,6 +19,7 @@ var queue = [];
 var searchInterval = setInterval(search, 60000);
 var followInterval = setInterval(followFromQueue, 1000);
 var reviveIterval = setInterval(revive, 1000 * 60 * 60);
+var greetInterval = setInterval(greet, 1000 * 60 * 60 * 24);
 
 // set up a user stream
 var stream = Twitter.stream('user');
@@ -73,4 +76,11 @@ function revive() {
     clearInterval(searchInterval);
     searchInterval = setInterval(search, 60000);
     followInterval = setInterval(followFromQueue, 1000);
+}
+
+function greet() {
+    var quote = randomQuote.getRandomQuote();
+    if (quote == "error") return;
+    else if(quote.length <= 130 )Tweet.sendTweet("#quote : " + quote);
+    else if(quote.length <=140) Tweet.sendTweet(quote);
 }
