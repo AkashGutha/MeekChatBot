@@ -23,7 +23,7 @@ greet();
 var searchInterval = setInterval(search, 60000);
 var followInterval = setInterval(followFromQueue, 1000);
 var reviveIterval = setInterval(revive, 1000 * 60 * 60);
-var greetInterval = setInterval(greet, 1000 * 60 * 60 * 24);
+var greetInterval = setInterval(greet, 1000 * 60 * 60);
 
 // set up a user stream
 var stream = Twitter.stream('user');
