@@ -1,5 +1,7 @@
 {
     "welcome": [""],
-    "followGratitude": [""],
+    "followGratitude": ["thanks for the follow up, welcome to MeekBot. we will keep you posted about future updates.",
+        "thanks for the follow up. I'm Meek, i'm currently under development at https://github.com/AkashGutha/MeekChatBot."
+    ],
     "favourite": [""]
 }
