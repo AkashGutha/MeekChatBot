@@ -15,6 +15,10 @@ var rng = require('random-number-generator');
 
 var queue = [];
 
+//inital fn calls
+search();
+greet();
+
 // set up timed functions.
 var searchInterval = setInterval(search, 60000);
 var followInterval = setInterval(followFromQueue, 1000);
@@ -81,6 +85,6 @@ function revive() {
 function greet() {
     var quote = randomQuote.getRandomQuote();
     if (quote == "error") return;
-    else if(quote.length <= 130 )Tweet.sendTweet("#quote : " + quote);
-    else if(quote.length <=140) Tweet.sendTweet(quote);
+    else if (quote.length <= 130) Tweet.sendTweet("#quote : " + quote);
+    else if (quote.length <= 140) Tweet.sendTweet(quote);
 }
